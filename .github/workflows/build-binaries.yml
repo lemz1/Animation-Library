@@ -62,6 +62,13 @@ jobs:
         run: |
           install_name_tool -add_rpath @executable_path/. tanim
           codesign --force --deep --sign - tanim
+          for dylib in *.dylib; do
+            codesign --force --sign - "$dylib"
+          done
+
+          # Test
+          otool -L tanim
+          ./tanim --version || true
 
       - name: Upload ZIP artifact
         uses: actions/upload-artifact@v4
