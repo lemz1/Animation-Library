@@ -61,6 +61,7 @@ jobs:
         working-directory: export/release/bin
         run: |
           install_name_tool -add_rpath @executable_path/. tanim
+          codesign --force --deep --sign - tanim
 
       - name: Upload ZIP artifact
         uses: actions/upload-artifact@v4
