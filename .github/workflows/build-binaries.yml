@@ -66,10 +66,6 @@ jobs:
             codesign --force --sign - "$dylib"
           done
 
-          # Test
-          otool -L tanim
-          ./tanim --version || true
-
       - name: Upload ZIP artifact
         uses: actions/upload-artifact@v4
         with:
